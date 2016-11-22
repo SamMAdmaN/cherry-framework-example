@@ -12,28 +12,28 @@
  * @license    http://www.gnu.org/licenses/old-licenses/gpl-3.0.html
  */
 
-// Path to the installer Cherry Framework core.
+// Path to Cherry Framework core installer.
 $setup_file = get_template_directory() . '/cherry-framework/setup.php';
 
 if ( ! file_exists( $setup_file ) ) {
 	return;
 }
 
-// Load Cherry Framework core - below hooks and their priorities are very important.
+// Load Cherry Framework core - below the hooks and their priorities.  Very important.
 add_action( 'after_setup_theme', require( $setup_file ),          0 );
 add_action( 'after_setup_theme', 'your_prefix_get_core',          1 );
 add_action( 'after_setup_theme', 'Cherry_Core::load_all_modules', 2 );
 
-// Load the simple widget.
+// Load simple widget.
 add_action( 'after_setup_theme', 'your_prefix_include_widget',    9 );
 
-// Initialization of modules.
+// Modules Initialization.
 add_action( 'after_setup_theme', 'your_prefix_init_modules',     10 );
 
 /**
- * Loads the core functions.
+ *  Core functions loading.
  *
- * These files are needed before loading anything else in the
+ * These files are required before loading anything else in the
  * theme because they have required functions for use.
  */
 function your_prefix_get_core() {
@@ -95,18 +95,18 @@ function your_prefix_get_core() {
 /**
  * Load the widget.
  *
- * If feature used a Cherry Framework functionality, that it is required after core initialization.
+ * If the feature is used in Cherry Framework functionality, it is required after core initialization.
  */
 function your_prefix_include_widget() {
 	require get_template_directory() . '/cherry-framework-example/inc/class-simple-widget.php';
 }
 
 /**
- * Initialization of modules.
+ * Modules initialization .
  */
 function your_prefix_init_modules() {
 	/**
-	 * Init `cherry-post-meta` - module for manage post metadata.
+	 * Init `cherry-post-meta` - module for post metadata management.
 	 *
 	 * How to use?
 	 *
@@ -149,7 +149,7 @@ function your_prefix_init_modules() {
 	) );
 
 	/**
-	 * Init `cherry-term-meta` - module for manage terms metadata.
+	 * Init `cherry-term-meta` - module to manage terms metadata.
 	 *
 	 * How to use?
 	 *
@@ -385,7 +385,7 @@ function your_prefix_init_modules() {
 }
 
 /**
- * Callback-function that printed breadcrumbs.
+ * Callback-function that displays breadcrumbs.
  *
  * You'll have to add it manually in your template file (recommended in header.php).
  */
@@ -423,6 +423,6 @@ function your_prefix_site_breadcrumbs() {
 		),
 	) );
 
-	// Let's show a breadcrumbs in your site!
+	// Let's show breadcrumbs on your site!
 	do_action( 'your_prefix_breadcrumbs_render' );
 }
